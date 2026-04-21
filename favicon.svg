@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Crescent moon and star favicon">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#17332d" />
+      <stop offset="100%" stop-color="#091311" />
+    </linearGradient>
+    <linearGradient id="gold" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f3dfb4" />
+      <stop offset="100%" stop-color="#d8b97d" />
+    </linearGradient>
+  </defs>
+  <rect width="64" height="64" rx="16" fill="url(#bg)" />
+  <circle cx="29" cy="31" r="16" fill="url(#gold)" />
+  <circle cx="36" cy="27" r="14" fill="url(#bg)" />
+  <path
+    d="M45 15l2.1 6.3H54l-5.5 4 2.1 6.5L45 27.8l-5.6 4 2.2-6.5-5.6-4h6.9z"
+    fill="url(#gold)"
+  />
+</svg>
