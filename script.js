@@ -1,49 +1,20 @@
-const weddingDate = new Date("2026-05-11T10:00:00+05:30");
-
-const parts = {
-  days: document.getElementById("days"),
-  hours: document.getElementById("hours"),
-  minutes: document.getElementById("minutes"),
-  seconds: document.getElementById("seconds"),
-};
-
 const inviteCard = document.getElementById("inviteCard");
-const cardBack = inviteCard.querySelector(".card-back");
 const audio = document.getElementById("nasheed");
-const touchPrompt = document.getElementById("touchPrompt");
-const frontFace = inviteCard.querySelector(".card-front");
-let hasOpened = false;
+const muteToggle = document.getElementById("muteToggle");
+const cardActions = document.querySelectorAll(".card-action");
 let audioStarted = false;
 
-function pad(value) {
-  return String(value).padStart(2, "0");
+function syncCardState() {
+  const isOpen = inviteCard.classList.contains("is-open");
+  inviteCard.setAttribute("aria-expanded", String(isOpen));
+  inviteCard.setAttribute(
+    "aria-label",
+    isOpen ? "Close invitation details" : "Open invitation details"
+  );
 }
 
-function updateCountdown() {
-  const now = new Date();
-  const distance = weddingDate - now;
-
-  if (distance <= 0) {
-    parts.days.textContent = "00";
-    parts.hours.textContent = "00";
-    parts.minutes.textContent = "00";
-    parts.seconds.textContent = "00";
-    return;
-  }
-
-  const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-  const hours = Math.floor((distance / (1000 * 60 * 60)) % 24);
-  const minutes = Math.floor((distance / (1000 * 60)) % 60);
-  const seconds = Math.floor((distance / 1000) % 60);
-
-  parts.days.textContent = pad(days);
-  parts.hours.textContent = pad(hours);
-  parts.minutes.textContent = pad(minutes);
-  parts.seconds.textContent = pad(seconds);
-}
-
-async function tryPlayAudio() {
-  if (audioStarted) {
+async function playAudio() {
+  if (audioStarted || !audio) {
     return;
   }
 
@@ -53,25 +24,61 @@ async function tryPlayAudio() {
   } catch (_error) {}
 }
 
-function openInvitation() {
-  if (hasOpened) {
+function syncMuteButton() {
+  if (!audio || !muteToggle) {
     return;
   }
 
-  hasOpened = true;
-  inviteCard.classList.add("is-open");
-  tryPlayAudio();
+  const isMuted = audio.muted;
+  muteToggle.classList.toggle("is-muted", isMuted);
+  muteToggle.setAttribute("aria-pressed", String(isMuted));
+  muteToggle.setAttribute("aria-label", isMuted ? "Unmute audio" : "Mute audio");
 }
 
-cardBack.addEventListener("animationend", (event) => {
-  if (event.animationName !== "backFlip") {
+function toggleCard() {
+  inviteCard.classList.toggle("is-open");
+  syncCardState();
+  playAudio();
+}
+
+function toggleMute(event) {
+  event.stopPropagation();
+
+  if (!audio) {
     return;
   }
-  tryPlayAudio();
+
+  audio.muted = !audio.muted;
+  syncMuteButton();
+}
+
+inviteCard.addEventListener("click", toggleCard);
+inviteCard.addEventListener("keydown", (event) => {
+  if (event.key !== "Enter" && event.key !== " ") {
+    return;
+  }
+
+  event.preventDefault();
+  toggleCard();
 });
 
-touchPrompt.addEventListener("click", openInvitation);
-frontFace.addEventListener("click", openInvitation);
+if (muteToggle) {
+  muteToggle.addEventListener("click", toggleMute);
+}
 
-updateCountdown();
-setInterval(updateCountdown, 1000);
+cardActions.forEach((action) => {
+  action.addEventListener("click", (event) => {
+    event.stopPropagation();
+  });
+
+  action.addEventListener("keydown", (event) => {
+    event.stopPropagation();
+  });
+});
+
+requestAnimationFrame(() => {
+  inviteCard.classList.add("is-intro");
+});
+
+syncCardState();
+syncMuteButton();

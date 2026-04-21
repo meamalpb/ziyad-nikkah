@@ -1,14 +1,12 @@
 :root {
   --bg: #0f221e;
   --bg-deep: #091311;
-  --surface: rgba(255, 248, 235, 0.12);
-  --surface-strong: rgba(255, 248, 235, 0.18);
   --text: #f9f0df;
-  --muted: rgba(249, 240, 223, 0.78);
+  --muted: rgba(249, 240, 223, 0.72);
   --accent: #d8b97d;
   --accent-soft: #f3dfb4;
-  --line: rgba(236, 209, 157, 0.32);
-  --shadow: 0 30px 70px rgba(0, 0, 0, 0.38);
+  --line: rgba(236, 209, 157, 0.18);
+  --shadow: 0 24px 60px rgba(0, 0, 0, 0.28);
 }
 
 * {
@@ -24,167 +22,90 @@ body {
 body {
   font-family: "Avenir Next", "Segoe UI", sans-serif;
   color: var(--text);
-  background:
-    radial-gradient(circle at top left, rgba(216, 185, 125, 0.18), transparent 32%),
-    radial-gradient(circle at bottom right, rgba(181, 143, 68, 0.18), transparent 28%),
-    linear-gradient(145deg, var(--bg) 0%, #17332d 45%, var(--bg-deep) 100%);
-  overflow-x: hidden;
-}
-
-body::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  background:
-    linear-gradient(rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0.02)),
-    radial-gradient(circle, rgba(255, 247, 229, 0.03) 1px, transparent 1px);
-  background-size: auto, 22px 22px;
-  pointer-events: none;
+  background: linear-gradient(160deg, #17332d 0%, var(--bg) 52%, var(--bg-deep) 100%);
 }
 
 .page-shell {
-  position: relative;
   min-height: 100vh;
-  padding: 32px 20px 48px;
-}
-
-.ornament {
-  position: absolute;
-  width: 240px;
-  height: 240px;
-  border: 1px solid rgba(216, 185, 125, 0.15);
-  border-radius: 32px;
-  transform: rotate(45deg);
-  filter: blur(0.4px);
-}
-
-.ornament-left {
-  top: 48px;
-  left: -120px;
-}
-
-.ornament-right {
-  right: -120px;
-  bottom: 72px;
-}
-
-.invite-layout {
-  position: relative;
-  z-index: 1;
-  max-width: 960px;
-  margin: 0 auto;
-  min-height: calc(100vh - 80px);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.eyebrow,
-.back-eyebrow,
-.detail-label,
-.countdown-label,
-.front-note {
-  text-transform: uppercase;
-  letter-spacing: 0.22em;
-  font-size: 0.75rem;
-}
-
-.eyebrow,
-.back-eyebrow,
-.detail-label,
-.countdown-label {
-  color: var(--accent-soft);
-}
-
-h1,
-h2 {
-  margin: 0;
-  font-family: "Palatino Linotype", "Book Antiqua", Georgia, serif;
-  font-weight: 600;
-  line-height: 0.95;
-}
-
-h2 {
-  font-size: clamp(2.5rem, 4vw, 4rem);
-}
-
-.back-intro,
-.dua,
-.detail-value {
-  margin: 0;
-  color: var(--muted);
-  line-height: 1.7;
-}
-
-.countdown-panel {
-  padding: 20px;
-  border: 1px solid var(--line);
-  border-radius: 28px;
-  background: linear-gradient(180deg, rgba(255, 248, 235, 0.06), rgba(255, 248, 235, 0.03));
-  backdrop-filter: blur(14px);
-  box-shadow: inset 0 1px 0 rgba(255, 248, 235, 0.05);
-}
-
-.countdown-grid {
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 14px;
-  margin-top: 14px;
+  place-items: center;
+  padding: 24px 14px;
 }
 
-.countdown-box {
-  padding: 16px 10px;
-  text-align: center;
-  border-radius: 20px;
-  background: rgba(255, 248, 235, 0.04);
-  border: 1px solid rgba(255, 248, 235, 0.08);
+.invite-shell {
+  width: min(100%, 380px);
 }
 
-.countdown-box strong {
+.mute-toggle {
+  position: fixed;
+  top: 16px;
+  right: 16px;
+  z-index: 10;
+  width: 40px;
+  height: 40px;
+  display: grid;
+  place-items: center;
+  padding: 0;
+  border: 1px solid rgba(236, 209, 157, 0.2);
+  border-radius: 999px;
+  background: rgba(15, 34, 30, 0.72);
+  color: var(--accent-soft);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.18);
+  cursor: pointer;
+  backdrop-filter: blur(10px);
+}
+
+@media (min-width: 620px) {
+  .mute-toggle {
+    top: 20px;
+    right: 20px;
+  }
+}
+
+.mute-toggle:focus-visible {
+  outline: 2px solid rgba(243, 223, 180, 0.75);
+  outline-offset: 2px;
+}
+
+.mute-icon {
+  width: 18px;
+  height: 18px;
+}
+
+.icon-volume-off {
+  display: none;
+}
+
+.mute-toggle.is-muted .icon-volume-on {
+  display: none;
+}
+
+.mute-toggle.is-muted .icon-volume-off {
   display: block;
-  font-size: clamp(1.75rem, 4vw, 2.4rem);
-  color: var(--text);
 }
 
-.countdown-box span {
-  display: block;
-  margin-top: 6px;
-  font-size: 0.78rem;
-  color: var(--muted);
+.eyebrow,
+.back-eyebrow,
+.detail-label,
+.front-note,
+.flip-hint {
+  margin: 0;
   text-transform: uppercase;
   letter-spacing: 0.18em;
 }
 
-.card-stage {
-  display: grid;
-  place-items: center;
+.invite-card {
+  position: relative;
+  width: min(100%, 380px);
+  aspect-ratio: 100 / 148;
+  cursor: pointer;
+  outline: none;
   perspective: 2400px;
 }
 
-.invite-card {
-  position: relative;
-  width: min(92vw, 680px);
-  aspect-ratio: 5 / 6.5;
-}
-
-.touch-prompt {
-  position: absolute;
-  left: 50%;
-  bottom: 28px;
-  z-index: 3;
-  transform: translateX(-50%);
-  padding: 14px 22px;
-  border: 1px solid rgba(216, 185, 125, 0.45);
-  border-radius: 999px;
-  background: rgba(12, 31, 28, 0.88);
-  color: var(--accent-soft);
-  font: inherit;
-  font-size: 0.9rem;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  cursor: pointer;
-  box-shadow: 0 16px 30px rgba(0, 0, 0, 0.28);
-  animation: promptPulse 1.8s ease-in-out infinite;
+.invite-card:focus-visible {
+  box-shadow: 0 0 0 2px rgba(243, 223, 180, 0.7);
+  border-radius: 30px;
 }
 
 .card-rotator {
@@ -193,249 +114,293 @@ h2 {
   height: 100%;
   transform-style: preserve-3d;
   -webkit-transform-style: preserve-3d;
-  will-change: transform;
+  transition: transform 0.9s cubic-bezier(0.22, 0.78, 0.2, 1);
 }
 
-.invite-card.is-open .touch-prompt {
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 220ms ease;
+.invite-card.is-intro .card-rotator {
+  animation: settleCard 1s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.invite-card.is-open .card-rotator {
+  transform: rotateY(180deg);
 }
 
 .card-face {
   position: absolute;
   inset: 0;
-  padding: clamp(28px, 4.5vw, 46px);
-  border-radius: 36px;
+  display: grid;
+  border-radius: 28px;
   overflow: hidden;
-  border: 1px solid rgba(230, 210, 171, 0.26);
   box-shadow: var(--shadow);
   backface-visibility: hidden;
   -webkit-backface-visibility: hidden;
-  transform-style: preserve-3d;
-  -webkit-transform-style: preserve-3d;
-}
-
-.inside-frame {
-  display: grid;
-  gap: 28px;
-  height: 100%;
-  padding: clamp(18px, 2.5vw, 26px);
-  border-radius: 28px;
-  border: 1px solid rgba(216, 185, 125, 0.18);
-  box-shadow:
-    inset 0 0 0 1px rgba(216, 185, 125, 0.07),
-    inset 0 24px 60px rgba(0, 0, 0, 0.18);
 }
 
 .card-front {
-  display: grid;
-  place-items: center;
-  align-content: center;
-  transform: rotateY(0deg);
+  z-index: 2;
+  padding: 24px 22px;
+  transform: rotateY(0deg) translateZ(1px);
   background:
-    radial-gradient(circle at top, rgba(255, 252, 246, 0.9), rgba(248, 233, 201, 0.96) 58%, rgba(232, 209, 162, 0.98) 100%);
-  color: #6f4a1d;
+    radial-gradient(circle at top, rgba(255, 253, 248, 0.98), rgba(248, 234, 202, 0.96) 60%, rgba(232, 209, 162, 0.98) 100%);
+  border: 1px solid rgba(204, 169, 104, 0.28);
 }
 
-.front-glow {
-  position: absolute;
-  inset: 12% 18%;
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(255, 255, 255, 0.65), transparent 65%);
-  filter: blur(28px);
+.front-stack {
+  display: grid;
+  align-content: center;
+  justify-items: center;
+  gap: 14px;
+  height: 100%;
+  text-align: center;
+}
+
+.eyebrow {
+  font-size: 0.6rem;
+  color: rgba(116, 76, 29, 0.82);
 }
 
 .card-front img {
-  position: relative;
-  z-index: 1;
-  width: min(78%, 420px);
+  width: min(64%, 210px);
   height: auto;
   object-fit: contain;
-  filter: drop-shadow(0 18px 18px rgba(99, 67, 24, 0.16));
+  filter: drop-shadow(0 12px 18px rgba(83, 56, 18, 0.12));
 }
 
-.front-note {
-  position: absolute;
-  bottom: 30px;
+h1,
+h2 {
   margin: 0;
-  color: rgba(102, 67, 20, 0.78);
+  font-family: Baskerville, "Palatino Linotype", "Book Antiqua", Georgia, serif;
+  font-weight: 600;
+  line-height: 0.92;
+  letter-spacing: -0.03em;
 }
 
-.card-back {
+h1 {
+  font-size: clamp(2.6rem, 11vw, 3.8rem);
+  color: #7f511b;
+}
+
+h2 {
+  font-size: clamp(2rem, 8vw, 3rem);
+}
+
+.name-inline,
+.name-stack {
   display: grid;
-  background:
-    linear-gradient(180deg, rgba(16, 39, 34, 0.98), rgba(8, 18, 16, 0.99)),
-    radial-gradient(circle at top, rgba(216, 185, 125, 0.12), transparent 50%);
-  transform: rotateY(-180deg);
+  justify-items: center;
 }
 
-.invite-card.is-open .card-front {
-  animation: frontFlip 2.2s cubic-bezier(0.22, 0.78, 0.2, 1) forwards;
+.name-inline {
+  grid-auto-flow: column;
+  align-items: baseline;
+  gap: 0.18em;
+  white-space: nowrap;
 }
 
-.invite-card.is-open .card-back {
-  animation: backFlip 2.2s cubic-bezier(0.22, 0.78, 0.2, 1) forwards;
+.name-stack {
+  gap: 0.08em;
 }
 
-.card-back::before,
-.card-back::after {
-  content: "";
-  position: absolute;
-  inset: 18px;
-  border-radius: 24px;
-  pointer-events: none;
+.name-line {
+  display: block;
 }
 
-.card-back::before {
-  border: 1px solid rgba(216, 185, 125, 0.28);
+.name-join {
+  display: block;
+  font-size: 0.44em;
+  line-height: 1;
+  letter-spacing: 0.08em;
 }
 
-.card-back::after {
-  inset: 32px;
-  border: 1px solid rgba(216, 185, 125, 0.12);
+.name-inline .name-join {
+  font-size: 0.62em;
 }
 
-.card-back h2 span {
+.name-stack .name-line .name-join {
+  display: inline;
+  margin-left: 0.12em;
+}
+
+h1 .name-join,
+h2 .name-join {
   color: var(--accent);
 }
 
-.detail-group {
+.front-subtitle {
+  margin: 0;
+  font-size: 0.92rem;
+  color: rgba(116, 76, 29, 0.74);
+}
+
+.front-note {
+  font-size: 0.68rem;
+  letter-spacing: 0.08em;
+  color: rgba(116, 76, 29, 0.68);
+}
+
+.card-back {
+  z-index: 1;
+  padding: 18px;
+  transform: rotateY(180deg) translateZ(1px);
+  background:
+    radial-gradient(circle at top center, rgba(216, 185, 125, 0.1), transparent 12%),
+    radial-gradient(circle at bottom right, rgba(243, 223, 180, 0.05), transparent 36%),
+    linear-gradient(rgba(255, 248, 235, 0.025), rgba(255, 248, 235, 0.025)),
+    radial-gradient(circle, rgba(243, 223, 180, 0.035) 1px, transparent 1px),
+    linear-gradient(180deg, rgba(18, 41, 35, 0.99), rgba(9, 19, 17, 1));
+  background-size: auto, auto, auto, 18px 18px, auto;
+  border: 1px solid var(--line);
+}
+
+.invite-card.is-open .card-front {
+  z-index: 1;
+}
+
+.invite-card.is-open .card-back {
+  z-index: 2;
+}
+
+.back-stack {
   display: grid;
-  gap: 8px;
+  align-content: center;
+  justify-items: center;
+  gap: 14px;
+  height: 100%;
+  padding: 4px;
+  text-align: center;
+}
+
+.back-eyebrow,
+.detail-label {
+  font-size: 0.6rem;
+  color: var(--accent-soft);
 }
 
 .back-intro {
-  max-width: 30ch;
-  font-size: 1.05rem;
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.55;
+  font-size: 0.72rem;
 }
 
-.details-grid {
+.details-list {
+  display: grid;
+  gap: 10px;
+  width: 100%;
+  justify-items: center;
+}
+
+.detail-row {
+  display: grid;
+  gap: 6px;
+  width: 100%;
+  padding: 12px 0;
+  border-top: 1px solid rgba(236, 209, 157, 0.12);
+  justify-items: center;
+  text-align: center;
+}
+
+.detail-row:first-child {
+  border-top: 0;
+}
+
+.detail-copy {
+  display: grid;
+  gap: 4px;
+  justify-items: center;
+}
+
+.detail-copy strong {
+  font-size: 1rem;
+  line-height: 1.35;
+}
+
+.detail-copy span {
+  font-size: 0.88rem;
+  color: var(--muted);
+}
+
+.card-actions {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 28px 36px;
+  gap: 10px;
+  width: 100%;
 }
 
-.detail-group-wide {
-  grid-column: 1 / -1;
+.card-action {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 42px;
+  padding: 10px 12px;
+  border: 1px solid rgba(236, 209, 157, 0.14);
+  border-radius: 999px;
+  background: rgba(255, 248, 235, 0.04);
+  color: var(--accent-soft);
+  text-decoration: none;
+  font-size: 0.76rem;
+  font-weight: 500;
+  letter-spacing: 0.01em;
 }
 
-.detail-value {
-  font-size: 1.18rem;
-  line-height: 1.6;
+.card-action:focus-visible {
+  outline: 2px solid rgba(243, 223, 180, 0.7);
+  outline-offset: 2px;
 }
 
-.dua {
+.card-action-icon {
+  width: 16px;
+  height: 16px;
+  flex: none;
+}
+
+.flip-hint {
   margin-top: auto;
-  padding-top: 24px;
-  border-top: 1px solid rgba(216, 185, 125, 0.2);
-  font-style: italic;
-  font-size: 1.08rem;
+  font-size: 0.62rem;
+  letter-spacing: 0.08em;
+  color: rgba(249, 240, 223, 0.48);
+  text-align: center;
 }
 
-@keyframes frontFlip {
+@keyframes settleCard {
   0% {
     opacity: 0;
-    transform: rotateY(0deg) scale(0.92);
-  }
-  16% {
-    opacity: 1;
-    transform: rotateY(0deg) scale(1);
+    transform: rotateX(8deg) rotateY(-10deg) scale(0.97);
   }
   100% {
     opacity: 1;
-    transform: rotateY(180deg) scale(1);
+    transform: rotateX(0deg) rotateY(0deg) scale(1);
   }
 }
 
-@keyframes backFlip {
-  0% {
-    opacity: 1;
-    transform: rotateY(-180deg) scale(0.98);
-  }
-  46% {
-    opacity: 1;
-    transform: rotateY(-92deg) scale(0.98);
-  }
-  100% {
-    opacity: 1;
-    transform: rotateY(0deg) scale(1);
-  }
-}
-
-@keyframes promptPulse {
-  0%,
-  100% {
-    transform: translateX(-50%) translateY(0);
-    box-shadow: 0 16px 30px rgba(0, 0, 0, 0.28);
-  }
-  50% {
-    transform: translateX(-50%) translateY(-4px);
-    box-shadow: 0 22px 36px rgba(0, 0, 0, 0.34);
-  }
-}
-
-@media (max-width: 960px) {
-  .invite-layout {
-    padding-top: 10px;
-  }
-}
-
-@media (max-width: 640px) {
-  .page-shell {
-    padding-inline: 14px;
+@media (min-width: 620px) {
+  .invite-shell {
+    width: min(100%, 430px);
   }
 
-  .countdown-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+  .mute-toggle {
+    top: 20px;
+    right: 20px;
   }
 
   .invite-card {
-    width: min(100%, 520px);
+    width: min(100%, 430px);
+    aspect-ratio: 10 / 13.8;
   }
 
-  .card-face {
-    border-radius: 28px;
-  }
-
-  .card-front img {
-    width: 84%;
-  }
-
-  .inside-frame {
-    gap: 22px;
-    padding: 16px;
-  }
-
-  .details-grid {
-    grid-template-columns: 1fr;
-    gap: 22px;
-  }
-
-  .detail-group-wide {
-    grid-column: auto;
-  }
-
-  .card-inside h2 {
-    font-size: clamp(2.3rem, 10vw, 3.3rem);
-  }
-
-  .detail-value,
-  .dua,
-  .back-intro {
-    font-size: 1rem;
+  .card-front,
+  .card-back {
+    padding: 24px;
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .card-front,
-  .card-back {
-    animation-duration: 0.01ms;
-    animation-delay: 0ms;
-    animation-fill-mode: forwards;
+  .card-rotator {
+    transition-duration: 0.01ms;
   }
 
-  .touch-prompt {
+  .invite-card.is-intro .card-rotator {
     animation: none;
   }
 }

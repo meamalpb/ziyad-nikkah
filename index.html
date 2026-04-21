@@ -7,92 +7,167 @@
     <link rel="stylesheet" href="./styles.css" />
   </head>
   <body>
-    <div class="page-shell">
-      <div class="ornament ornament-left"></div>
-      <div class="ornament ornament-right"></div>
+    <button
+      id="muteToggle"
+      class="mute-toggle"
+      type="button"
+      aria-pressed="false"
+      aria-label="Mute audio"
+        >
+          <svg
+            class="mute-icon icon-volume-on"
+            viewBox="0 0 24 24"
+            aria-hidden="true"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5" />
+            <path d="M15.5 8.5a5 5 0 0 1 0 7" />
+            <path d="M19 5a10 10 0 0 1 0 14" />
+          </svg>
+          <svg
+            class="mute-icon icon-volume-off"
+            viewBox="0 0 24 24"
+            aria-hidden="true"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5" />
+            <line x1="22" x2="16" y1="9" y2="15" />
+            <line x1="16" x2="22" y1="9" y2="15" />
+          </svg>
+        </button>
 
-      <main class="invite-layout">
-        <section class="card-stage" aria-label="Wedding invitation card">
-          <div id="inviteCard" class="invite-card">
-            <button id="touchPrompt" class="touch-prompt" type="button">
-              Touch the card to open the invitation
-            </button>
-            <div class="card-rotator">
-              <article class="card-face card-front">
-                <div class="front-glow"></div>
+    <main class="page-shell">
+      <section class="invite-shell" aria-label="Wedding invitation">
+        <div
+          id="inviteCard"
+          class="invite-card"
+          role="button"
+          tabindex="0"
+          aria-expanded="false"
+          aria-label="Open invitation details"
+        >
+          <div class="card-rotator">
+            <article class="card-face card-front">
+              <div class="front-stack">
                 <p class="eyebrow">Bismillah-ir-Rahman-ir-Raheem</p>
                 <img
                   src="./Arabic-islamic-calligraphy-of-text-(-wedding-invitation-)-on-transparent-background-PNG%20(1).png"
                   alt="Arabic wedding invitation calligraphy"
                 />
-                <p class="front-note">Wedding Invitation</p>
-              </article>
+                <h1 class="name-inline">
+                  <span class="name-line">Ziyad</span>
+                  <span class="name-join">&amp;</span>
+                  <span class="name-line">Hina</span>
+                </h1>
+                <p class="front-subtitle">11 May 2026 • Calicut</p>
 
-              <article class="card-face card-back">
-                <div class="inside-frame">
-                  <p class="back-eyebrow">You are warmly invited</p>
-                  <h2>Ziyad Onji <span>&</span> Hina Fathima</h2>
-                  <p class="back-intro">
-                    With gratitude to Allah, we request the honor of your
-                    presence and du'a on this blessed occasion.
-                  </p>
+                <p class="front-note">tap to open</p>
+              </div>
+            </article>
 
-                  <div class="details-grid">
-                    <div class="detail-group">
-                      <p class="detail-label">Date</p>
-                      <p class="detail-value">Monday, 11 May 2026</p>
-                    </div>
+            <article class="card-face card-back">
+              <div class="back-stack">
+                <p class="back-eyebrow">You are warmly invited to the Nikah of</p>
+                <h2 class="name-stack">
+                  <span class="name-line"
+                    >Ziyad Onji <br><span class="name-join">&amp;</span></span
+                  >
+                  <span class="name-line">Hina Fathima</span>
+                </h2>
+                <p class="back-intro">
+                  We request the honor of your presence and du'a <br> on this blessed
+                  occasion.
+                </p>
 
-                    <div class="detail-group">
-                      <p class="detail-label">Venue</p>
-                      <p class="detail-value">
-                        Noor Mahal Auditorium
-                        <br />
-                        Calicut, Kerala
-                      </p>
-                    </div>
-
-                    <div class="detail-group detail-group-wide">
-                      <p class="detail-label">Occasion</p>
-                      <p class="detail-value">Nikah Ceremony & Du'a Gathering</p>
-                    </div>
-                  </div>
-
-                  <div class="countdown-panel" aria-live="polite">
-                    <p class="countdown-label">Countdown to Monday, May 11, 2026</p>
-                    <div class="countdown-grid">
-                      <div class="countdown-box">
-                        <strong id="days">00</strong>
-                        <span>Days</span>
-                      </div>
-                      <div class="countdown-box">
-                        <strong id="hours">00</strong>
-                        <span>Hours</span>
-                      </div>
-                      <div class="countdown-box">
-                        <strong id="minutes">00</strong>
-                        <span>Minutes</span>
-                      </div>
-                      <div class="countdown-box">
-                        <strong id="seconds">00</strong>
-                        <span>Seconds</span>
-                      </div>
+                <div class="details-list">
+                  <div class="detail-row">
+                    <p class="detail-label">Date</p>
+                    <div class="detail-copy">
+                      <strong>11 May 2026</strong>
+                      <span>Monday</span>
                     </div>
                   </div>
 
-                  <p class="dua">
-                    “And among His signs is that He created for you spouses so
-                    that you may find tranquility in them.”
-                  </p>
+                  <div class="detail-row">
+                    <p class="detail-label">Venue</p>
+                    <div class="detail-copy">
+                      <strong>Noor Mahal Auditorium</strong>
+                      <span>Calicut, Kerala</span>
+                    </div>
+                  </div>
                 </div>
-              </article>
-            </div>
-          </div>
-        </section>
-      </main>
-    </div>
 
-    <audio id="nasheed" src="./wedding_nasheed.mp3" preload="auto" autoplay></audio>
+                <div class="card-actions">
+                  <a
+                    class="card-action"
+                    href="https://www.google.com/maps/search/?api=1&amp;query=Noor+Mahal+Auditorium+Calicut+Kerala"
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    <svg
+                      class="card-action-icon"
+                      viewBox="0 0 24 24"
+                      aria-hidden="true"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    >
+                      <path d="M20 10c0 6-8 12-8 12S4 16 4 10a8 8 0 1 1 16 0z" />
+                      <circle cx="12" cy="10" r="3" />
+                    </svg>
+                    <span>Get Directions</span>
+                  </a>
+
+                  <a
+                    class="card-action"
+                    href="https://calendar.google.com/calendar/render?action=TEMPLATE&amp;text=Ziyad+%26+Hina+Nikah&amp;dates=20260511T043000Z%2F20260511T063000Z&amp;details=You+are+warmly+invited+to+the+Nikah+of+Ziyad+Onji+and+Hina+Fathima.&amp;location=Noor+Mahal+Auditorium%2C+Calicut%2C+Kerala"
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    <svg
+                      class="card-action-icon"
+                      viewBox="0 0 24 24"
+                      aria-hidden="true"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    >
+                      <path d="M8 2v4" />
+                      <path d="M16 2v4" />
+                      <rect width="18" height="18" x="3" y="4" rx="2" />
+                      <path d="M3 10h18" />
+                      <path d="M8 14h.01" />
+                      <path d="M12 14h.01" />
+                      <path d="M16 14h.01" />
+                      <path d="M8 18h.01" />
+                      <path d="M12 18h.01" />
+                      <path d="M16 18h.01" />
+                    </svg>
+                    <span>Add to Calendar</span>
+                  </a>
+                </div>
+
+                <!-- <p class="flip-hint">Tap again to close</p> -->
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <audio id="nasheed" src="./wedding_nasheed.mp3" preload="auto"></audio>
 
     <script src="./script.js"></script>
   </body>
