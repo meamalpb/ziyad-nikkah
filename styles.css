@@ -23,6 +23,7 @@ body {
   font-family: "Avenir Next", "Segoe UI", sans-serif;
   color: var(--text);
   background: linear-gradient(160deg, #17332d 0%, var(--bg) 52%, var(--bg-deep) 100%);
+  -webkit-tap-highlight-color: transparent;
 }
 
 .page-shell {
@@ -101,6 +102,9 @@ body {
   cursor: pointer;
   outline: none;
   perspective: 2400px;
+  -webkit-user-select: none;
+  user-select: none;
+  -webkit-touch-callout: none;
 }
 
 .invite-card:focus-visible {
@@ -134,6 +138,8 @@ body {
   box-shadow: var(--shadow);
   backface-visibility: hidden;
   -webkit-backface-visibility: hidden;
+  -webkit-user-select: none;
+  user-select: none;
 }
 
 .card-front {
