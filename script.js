@@ -8,8 +8,12 @@ const parts = {
 };
 
 const inviteCard = document.getElementById("inviteCard");
+const cardBack = inviteCard.querySelector(".card-back");
 const audio = document.getElementById("nasheed");
-const audioControl = document.getElementById("audioControl");
+const touchPrompt = document.getElementById("touchPrompt");
+const frontFace = inviteCard.querySelector(".card-front");
+let hasOpened = false;
+let audioStarted = false;
 
 function pad(value) {
   return String(value).padStart(2, "0");
@@ -39,22 +43,35 @@ function updateCountdown() {
 }
 
 async function tryPlayAudio() {
-  try {
-    audio.currentTime = 0;
-    await audio.play();
-    audioControl.hidden = true;
-  } catch (_error) {
-    audioControl.hidden = false;
+  if (audioStarted) {
+    return;
   }
+
+  try {
+    await audio.play();
+    audioStarted = true;
+  } catch (_error) {}
 }
 
-inviteCard.addEventListener("animationend", () => {
+function openInvitation() {
+  if (hasOpened) {
+    return;
+  }
+
+  hasOpened = true;
+  inviteCard.classList.add("is-open");
+  tryPlayAudio();
+}
+
+cardBack.addEventListener("animationend", (event) => {
+  if (event.animationName !== "backFlip") {
+    return;
+  }
   tryPlayAudio();
 });
 
-audioControl.addEventListener("click", async () => {
-  await tryPlayAudio();
-});
+touchPrompt.addEventListener("click", openInvitation);
+frontFace.addEventListener("click", openInvitation);
 
 updateCountdown();
 setInterval(updateCountdown, 1000);

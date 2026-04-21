@@ -71,18 +71,12 @@ body::before {
 .invite-layout {
   position: relative;
   z-index: 1;
-  max-width: 1180px;
+  max-width: 960px;
   margin: 0 auto;
   min-height: calc(100vh - 80px);
-  display: grid;
-  grid-template-columns: minmax(280px, 460px) minmax(300px, 1fr);
-  gap: 48px;
+  display: flex;
   align-items: center;
-}
-
-.hero-copy {
-  display: grid;
-  gap: 22px;
+  justify-content: center;
 }
 
 .eyebrow,
@@ -110,15 +104,10 @@ h2 {
   line-height: 0.95;
 }
 
-h1 {
-  font-size: clamp(3.3rem, 7vw, 5.8rem);
-}
-
 h2 {
   font-size: clamp(2.5rem, 4vw, 4rem);
 }
 
-.intro,
 .back-intro,
 .dua,
 .detail-value {
@@ -127,23 +116,13 @@ h2 {
   line-height: 1.7;
 }
 
-.intro {
-  font-size: 1.03rem;
-  max-width: 38ch;
-}
-
-.intro span {
-  color: var(--text);
-  font-weight: 700;
-}
-
 .countdown-panel {
-  padding: 22px;
+  padding: 20px;
   border: 1px solid var(--line);
   border-radius: 28px;
-  background: linear-gradient(180deg, var(--surface-strong), var(--surface));
+  background: linear-gradient(180deg, rgba(255, 248, 235, 0.06), rgba(255, 248, 235, 0.03));
   backdrop-filter: blur(14px);
-  box-shadow: var(--shadow);
+  box-shadow: inset 0 1px 0 rgba(255, 248, 235, 0.05);
 }
 
 .countdown-grid {
@@ -154,10 +133,10 @@ h2 {
 }
 
 .countdown-box {
-  padding: 18px 12px;
+  padding: 16px 10px;
   text-align: center;
   border-radius: 20px;
-  background: rgba(255, 248, 235, 0.06);
+  background: rgba(255, 248, 235, 0.04);
   border: 1px solid rgba(255, 248, 235, 0.08);
 }
 
@@ -176,53 +155,84 @@ h2 {
   letter-spacing: 0.18em;
 }
 
-.audio-control {
-  width: fit-content;
-  padding: 14px 22px;
-  border: 0;
-  border-radius: 999px;
-  background: linear-gradient(135deg, var(--accent), #f0d7a8);
-  color: #10201b;
-  font: inherit;
-  font-weight: 700;
-  cursor: pointer;
-  box-shadow: 0 12px 28px rgba(216, 185, 125, 0.24);
-  transition: transform 180ms ease, box-shadow 180ms ease;
-}
-
-.audio-control:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 18px 32px rgba(216, 185, 125, 0.28);
-}
-
 .card-stage {
   display: grid;
   place-items: center;
-  perspective: 1800px;
+  perspective: 2400px;
 }
 
 .invite-card {
   position: relative;
-  width: min(88vw, 680px);
+  width: min(92vw, 680px);
   aspect-ratio: 5 / 6.5;
+}
+
+.touch-prompt {
+  position: absolute;
+  left: 50%;
+  bottom: 28px;
+  z-index: 3;
+  transform: translateX(-50%);
+  padding: 14px 22px;
+  border: 1px solid rgba(216, 185, 125, 0.45);
+  border-radius: 999px;
+  background: rgba(12, 31, 28, 0.88);
+  color: var(--accent-soft);
+  font: inherit;
+  font-size: 0.9rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  cursor: pointer;
+  box-shadow: 0 16px 30px rgba(0, 0, 0, 0.28);
+  animation: promptPulse 1.8s ease-in-out infinite;
+}
+
+.card-rotator {
+  position: relative;
+  width: 100%;
+  height: 100%;
   transform-style: preserve-3d;
-  animation: cardReveal 2.6s cubic-bezier(0.2, 0.75, 0.18, 1) 0.45s forwards;
+  -webkit-transform-style: preserve-3d;
+  will-change: transform;
+}
+
+.invite-card.is-open .touch-prompt {
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 220ms ease;
 }
 
 .card-face {
   position: absolute;
   inset: 0;
-  padding: clamp(24px, 4vw, 42px);
+  padding: clamp(28px, 4.5vw, 46px);
   border-radius: 36px;
-  backface-visibility: hidden;
   overflow: hidden;
   border: 1px solid rgba(230, 210, 171, 0.26);
   box-shadow: var(--shadow);
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  transform-style: preserve-3d;
+  -webkit-transform-style: preserve-3d;
+}
+
+.inside-frame {
+  display: grid;
+  gap: 28px;
+  height: 100%;
+  padding: clamp(18px, 2.5vw, 26px);
+  border-radius: 28px;
+  border: 1px solid rgba(216, 185, 125, 0.18);
+  box-shadow:
+    inset 0 0 0 1px rgba(216, 185, 125, 0.07),
+    inset 0 24px 60px rgba(0, 0, 0, 0.18);
 }
 
 .card-front {
   display: grid;
   place-items: center;
+  align-content: center;
+  transform: rotateY(0deg);
   background:
     radial-gradient(circle at top, rgba(255, 252, 246, 0.9), rgba(248, 233, 201, 0.96) 58%, rgba(232, 209, 162, 0.98) 100%);
   color: #6f4a1d;
@@ -254,12 +264,18 @@ h2 {
 
 .card-back {
   display: grid;
-  align-content: center;
-  gap: 18px;
   background:
-    linear-gradient(180deg, rgba(21, 45, 40, 0.92), rgba(10, 18, 16, 0.96)),
+    linear-gradient(180deg, rgba(16, 39, 34, 0.98), rgba(8, 18, 16, 0.99)),
     radial-gradient(circle at top, rgba(216, 185, 125, 0.12), transparent 50%);
-  transform: rotateY(180deg);
+  transform: rotateY(-180deg);
+}
+
+.invite-card.is-open .card-front {
+  animation: frontFlip 2.2s cubic-bezier(0.22, 0.78, 0.2, 1) forwards;
+}
+
+.invite-card.is-open .card-back {
+  animation: backFlip 2.2s cubic-bezier(0.22, 0.78, 0.2, 1) forwards;
 }
 
 .card-back::before,
@@ -286,58 +302,82 @@ h2 {
 
 .detail-group {
   display: grid;
-  gap: 4px;
+  gap: 8px;
 }
 
 .back-intro {
-  max-width: 34ch;
+  max-width: 30ch;
+  font-size: 1.05rem;
+}
+
+.details-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 28px 36px;
+}
+
+.detail-group-wide {
+  grid-column: 1 / -1;
 }
 
 .detail-value {
-  font-size: 1.02rem;
+  font-size: 1.18rem;
+  line-height: 1.6;
 }
 
 .dua {
-  margin-top: 8px;
-  padding-top: 18px;
+  margin-top: auto;
+  padding-top: 24px;
   border-top: 1px solid rgba(216, 185, 125, 0.2);
   font-style: italic;
+  font-size: 1.08rem;
 }
 
-@keyframes cardReveal {
+@keyframes frontFlip {
   0% {
     opacity: 0;
-    transform: rotateY(0deg) rotateX(10deg) scale(0.84);
+    transform: rotateY(0deg) scale(0.92);
   }
-  25% {
+  16% {
     opacity: 1;
-    transform: rotateY(0deg) rotateX(0deg) scale(1);
+    transform: rotateY(0deg) scale(1);
   }
   100% {
     opacity: 1;
-    transform: rotateY(180deg) rotateX(0deg) scale(1);
+    transform: rotateY(180deg) scale(1);
+  }
+}
+
+@keyframes backFlip {
+  0% {
+    opacity: 1;
+    transform: rotateY(-180deg) scale(0.98);
+  }
+  46% {
+    opacity: 1;
+    transform: rotateY(-92deg) scale(0.98);
+  }
+  100% {
+    opacity: 1;
+    transform: rotateY(0deg) scale(1);
+  }
+}
+
+@keyframes promptPulse {
+  0%,
+  100% {
+    transform: translateX(-50%) translateY(0);
+    box-shadow: 0 16px 30px rgba(0, 0, 0, 0.28);
+  }
+  50% {
+    transform: translateX(-50%) translateY(-4px);
+    box-shadow: 0 22px 36px rgba(0, 0, 0, 0.34);
   }
 }
 
 @media (max-width: 960px) {
   .invite-layout {
-    grid-template-columns: 1fr;
-    gap: 34px;
     padding-top: 10px;
-  }
-
-  .hero-copy {
-    order: 2;
-    justify-items: center;
-    text-align: center;
-  }
-
-  .intro {
-    max-width: 48ch;
-  }
-
-  .card-stage {
-    order: 1;
   }
 }
 
@@ -361,16 +401,41 @@ h2 {
   .card-front img {
     width: 84%;
   }
+
+  .inside-frame {
+    gap: 22px;
+    padding: 16px;
+  }
+
+  .details-grid {
+    grid-template-columns: 1fr;
+    gap: 22px;
+  }
+
+  .detail-group-wide {
+    grid-column: auto;
+  }
+
+  .card-inside h2 {
+    font-size: clamp(2.3rem, 10vw, 3.3rem);
+  }
+
+  .detail-value,
+  .dua,
+  .back-intro {
+    font-size: 1rem;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .invite-card {
+  .card-front,
+  .card-back {
     animation-duration: 0.01ms;
     animation-delay: 0ms;
     animation-fill-mode: forwards;
   }
 
-  .audio-control {
-    transition: none;
+  .touch-prompt {
+    animation: none;
   }
 }

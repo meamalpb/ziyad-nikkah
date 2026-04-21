@@ -12,93 +12,87 @@
       <div class="ornament ornament-right"></div>
 
       <main class="invite-layout">
-        <section class="hero-copy">
-          <p class="eyebrow">Bismillah-ir-Rahman-ir-Raheem</p>
-          <h1>Nikah Invitation</h1>
-          <p class="intro">
-            A graceful nikah invitation with a live countdown to the ceremony
-            of
-            <span>Ziyad Onji</span>
-            and
-            <span>Hina Fathima</span>.
-          </p>
-
-          <div class="countdown-panel" aria-live="polite">
-            <p class="countdown-label">Countdown to Monday, May 11, 2026</p>
-            <div class="countdown-grid">
-              <div class="countdown-box">
-                <strong id="days">00</strong>
-                <span>Days</span>
-              </div>
-              <div class="countdown-box">
-                <strong id="hours">00</strong>
-                <span>Hours</span>
-              </div>
-              <div class="countdown-box">
-                <strong id="minutes">00</strong>
-                <span>Minutes</span>
-              </div>
-              <div class="countdown-box">
-                <strong id="seconds">00</strong>
-                <span>Seconds</span>
-              </div>
-            </div>
-          </div>
-
-          <button id="audioControl" class="audio-control" type="button" hidden>
-            Play Nasheed
-          </button>
-        </section>
-
         <section class="card-stage" aria-label="Wedding invitation card">
           <div id="inviteCard" class="invite-card">
-            <article class="card-face card-front">
-              <div class="front-glow"></div>
-              <img
-                src="./Arabic-islamic-calligraphy-of-text-(-wedding-invitation-)-on-transparent-background-PNG%20(1).png"
-                alt="Arabic wedding invitation calligraphy"
-              />
-              <p class="front-note">Wedding Invitation</p>
-            </article>
+            <button id="touchPrompt" class="touch-prompt" type="button">
+              Touch the card to open the invitation
+            </button>
+            <div class="card-rotator">
+              <article class="card-face card-front">
+                <div class="front-glow"></div>
+                <p class="eyebrow">Bismillah-ir-Rahman-ir-Raheem</p>
+                <img
+                  src="./Arabic-islamic-calligraphy-of-text-(-wedding-invitation-)-on-transparent-background-PNG%20(1).png"
+                  alt="Arabic wedding invitation calligraphy"
+                />
+                <p class="front-note">Wedding Invitation</p>
+              </article>
 
-            <article class="card-face card-back">
-              <p class="back-eyebrow">You are warmly invited</p>
-              <h2>Ziyad Onji <span>&</span> Hina Fathima</h2>
-              <p class="back-intro">
-                With gratitude to Allah, we request the honor of your presence
-                and du'a on this blessed occasion.
-              </p>
+              <article class="card-face card-back">
+                <div class="inside-frame">
+                  <p class="back-eyebrow">You are warmly invited</p>
+                  <h2>Ziyad Onji <span>&</span> Hina Fathima</h2>
+                  <p class="back-intro">
+                    With gratitude to Allah, we request the honor of your
+                    presence and du'a on this blessed occasion.
+                  </p>
 
-              <div class="detail-group">
-                <p class="detail-label">Date</p>
-                <p class="detail-value">Monday, 11 May 2026</p>
-              </div>
+                  <div class="details-grid">
+                    <div class="detail-group">
+                      <p class="detail-label">Date</p>
+                      <p class="detail-value">Monday, 11 May 2026</p>
+                    </div>
 
-              <div class="detail-group">
-                <p class="detail-label">Venue</p>
-                <p class="detail-value">
-                  Noor Mahal Auditorium
-                  <br />
-                  Calicut, Kerala
-                </p>
-              </div>
+                    <div class="detail-group">
+                      <p class="detail-label">Venue</p>
+                      <p class="detail-value">
+                        Noor Mahal Auditorium
+                        <br />
+                        Calicut, Kerala
+                      </p>
+                    </div>
 
-              <div class="detail-group">
-                <p class="detail-label">Occasion</p>
-                <p class="detail-value">Nikah Ceremony & Du'a Gathering</p>
-              </div>
+                    <div class="detail-group detail-group-wide">
+                      <p class="detail-label">Occasion</p>
+                      <p class="detail-value">Nikah Ceremony & Du'a Gathering</p>
+                    </div>
+                  </div>
 
-              <p class="dua">
-                “And among His signs is that He created for you spouses so that
-                you may find tranquility in them.”
-              </p>
-            </article>
+                  <div class="countdown-panel" aria-live="polite">
+                    <p class="countdown-label">Countdown to Monday, May 11, 2026</p>
+                    <div class="countdown-grid">
+                      <div class="countdown-box">
+                        <strong id="days">00</strong>
+                        <span>Days</span>
+                      </div>
+                      <div class="countdown-box">
+                        <strong id="hours">00</strong>
+                        <span>Hours</span>
+                      </div>
+                      <div class="countdown-box">
+                        <strong id="minutes">00</strong>
+                        <span>Minutes</span>
+                      </div>
+                      <div class="countdown-box">
+                        <strong id="seconds">00</strong>
+                        <span>Seconds</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <p class="dua">
+                    “And among His signs is that He created for you spouses so
+                    that you may find tranquility in them.”
+                  </p>
+                </div>
+              </article>
+            </div>
           </div>
         </section>
       </main>
     </div>
 
-    <audio id="nasheed" src="./wedding_nasheed.mp3" preload="auto"></audio>
+    <audio id="nasheed" src="./wedding_nasheed.mp3" preload="auto" autoplay></audio>
 
     <script src="./script.js"></script>
   </body>
