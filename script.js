@@ -4,6 +4,7 @@ const muteToggle = document.getElementById("muteToggle");
 const cardActions = document.querySelectorAll(".card-action");
 let audioStarted = false;
 
+
 function syncCardState() {
   const isOpen = inviteCard.classList.contains("is-open");
   inviteCard.setAttribute("aria-expanded", String(isOpen));
