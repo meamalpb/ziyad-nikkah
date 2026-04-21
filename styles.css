@@ -222,6 +222,97 @@ h2 {
   font-size: 0.62em;
 }
 
+.front-events,
+.events-stack {
+  display: grid;
+  justify-items: center;
+  width: 100%;
+}
+
+.front-events {
+  gap: 10px;
+}
+
+.events-stack {
+  gap: 14px;
+}
+
+.event-pair {
+  display: grid;
+  justify-items: center;
+  gap: 6px;
+  width: 100%;
+  text-align: center;
+}
+
+.event-pair-front {
+  gap: 5px;
+}
+
+.event-pair-back {
+  gap: 8px;
+}
+
+.front-kicker {
+  margin: 0;
+  font-size: 0.62rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: rgba(116, 76, 29, 0.62);
+}
+
+.event-label {
+  margin: 0;
+  font-size: 0.6rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(116, 76, 29, 0.72);
+}
+
+.card-back .event-label {
+  color: var(--accent-soft);
+}
+
+.event-pair-names {
+  display: grid;
+  grid-auto-flow: column;
+  align-items: baseline;
+  justify-content: center;
+  gap: 0.18em;
+  margin: 0;
+  font-family: Baskerville, "Palatino Linotype", "Book Antiqua", Georgia, serif;
+  font-size: clamp(1.65rem, 7vw, 2.35rem);
+  font-weight: 600;
+  line-height: 0.95;
+  letter-spacing: -0.03em;
+  color: #7f511b;
+  white-space: normal;
+}
+
+.event-pair-names-secondary {
+  font-size: clamp(1.45rem, 6vw, 2rem);
+}
+
+.event-pair-names-back {
+  font-size: clamp(1.55rem, 6.4vw, 2.45rem);
+  color: var(--text);
+}
+
+.event-pair-names .name-line {
+  min-width: 0;
+}
+
+.event-pair-names .name-join {
+  font-size: 0.56em;
+  color: var(--accent);
+}
+
+.front-divider {
+  width: 72px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(127, 81, 27, 0.38), transparent);
+}
+
 .name-stack .name-line .name-join {
   display: inline;
   margin-left: 0.12em;
