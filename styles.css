@@ -155,7 +155,7 @@ body {
   display: grid;
   align-content: center;
   justify-items: center;
-  gap: 14px;
+  gap: 12px;
   height: 100%;
   text-align: center;
 }
@@ -230,11 +230,11 @@ h2 {
 }
 
 .front-events {
-  gap: 10px;
+  gap: 8px;
 }
 
 .events-stack {
-  gap: 14px;
+  gap: 10px;
 }
 
 .event-pair {
@@ -251,6 +251,17 @@ h2 {
 
 .event-pair-back {
   gap: 8px;
+}
+
+.couples-list {
+  display: grid;
+  width: 100%;
+  justify-items: center;
+  gap: 10px;
+}
+
+.couples-list-back {
+  gap: 14px;
 }
 
 .front-kicker {
@@ -296,6 +307,16 @@ h2 {
 .event-pair-names-back {
   font-size: clamp(1.55rem, 6.4vw, 2.45rem);
   color: var(--text);
+}
+
+.couples-list-front .event-pair-names {
+  font-size: clamp(1.34rem, 5.65vw, 1.88rem);
+  white-space: nowrap;
+}
+
+.couples-list-back .event-pair-names {
+  font-size: clamp(1.28rem, 5.35vw, 1.92rem);
+  white-space: nowrap;
 }
 
 .event-pair-names .name-line {
@@ -361,7 +382,7 @@ h2 .name-join {
   display: grid;
   align-content: center;
   justify-items: center;
-  gap: 14px;
+  gap: 12px;
   height: 100%;
   padding: 4px;
   text-align: center;
@@ -382,7 +403,7 @@ h2 .name-join {
 
 .details-list {
   display: grid;
-  gap: 10px;
+  gap: 8px;
   width: 100%;
   justify-items: center;
 }
@@ -391,7 +412,7 @@ h2 .name-join {
   display: grid;
   gap: 6px;
   width: 100%;
-  padding: 12px 0;
+  padding: 10px 0;
   border-top: 1px solid rgba(236, 209, 157, 0.12);
   justify-items: center;
   text-align: center;
@@ -415,6 +436,14 @@ h2 .name-join {
 .detail-copy span {
   font-size: 0.88rem;
   color: var(--muted);
+}
+
+.detail-row-compact .detail-copy {
+  gap: 2px;
+}
+
+.detail-row-compact .detail-copy span {
+  font-size: 0.82rem;
 }
 
 .card-actions {
